@@ -1,27 +1,28 @@
 <template>
   <div class="home">
     home
-    <p>My name is {{ name }} and my age is {{ age }}</p>
+    <p ref="p">My name is {{ name }} and my age is {{ age }}</p>
+    <button @click="handleClick">click me</button>
   </div>
 </template>
 
 <script>
+import { ref } from '@vue/reactivity'
 export default {
   name: 'Home',
-  setup() {  // run first
-    
+  setup() {  
     let name = 'mario'
     let age = 34
-    // 看起來與 data() 很像, 但是目前為止的差異是
-    // setup()的變數是不可互動, data()的變數可互動
-    return {
-      name,
-      age
+    const p = ref("hello")  // 設定p的初始值, p.value = "hello"  不是<p>的內文
+
+    const handleClick = () => {
+      p.value.classList.add("text-primary")
+      p.value.textContent = "inner text has changed..."
     }
-  },
-  created() {  // run second
-  },
-  mounted() {  // run third
+
+    return {
+      name, age, handleClick, p
+    }
   }
 }
 </script>
