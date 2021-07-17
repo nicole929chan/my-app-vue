@@ -1,26 +1,28 @@
 <template>
   <div class="home">
-    home
-    <p>My name is {{ name }} and my age is {{ age }}</p>
-    <button @click="handleClick">click me</button>
-    <input type="text" v-model="name">
-    <button @click="age++">add 1 age</button>
+    <h1>Home</h1>
+    <h2>Reactivity</h2>
+    <p>{{ ninjaOne.name }} - {{ ninjaOne.age }}</p>
+    <button @click="updateNinjOne">click me</button>
+    <p>{{ nameTwo }}</p>
   </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { reactive } from '@vue/reactivity'
 export default {
   name: 'Home',
   setup() {  
-    const name = ref('mario')  // name.value = 'mario'
-    const age = ref(34)        // age.value = 34
-    const handleClick = () => {
-      name.value = 'luigi'
-      age.value = 30
+    const ninjaOne = reactive({ name: 'mario', age: 30})
+    let nameTwo = reactive('Dior')
+
+    const updateNinjOne = () => {
+      nameTwo = "Fendi"            // 不會改變其值
+      nameTwo = reactive('Fendi')  // 這樣也不會改變
     }
+
     return {
-      name, age, handleClick
+      ninjaOne, updateNinjOne, nameTwo
     }
   }
 }
