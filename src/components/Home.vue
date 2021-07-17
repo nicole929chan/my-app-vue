@@ -3,6 +3,8 @@
     home
     <p>My name is {{ name }} and my age is {{ age }}</p>
     <button @click="handleClick">click me</button>
+    <input type="text" v-model="name">
+    <button @click="age++">add 1 age</button>
   </div>
 </template>
 
@@ -16,9 +18,7 @@ export default {
     const handleClick = () => {
       name.value = 'luigi'
       age.value = 30
-      console.log('name.value: ' + name.value);
     }
-    console.log('name.value: ' + name.value);
     return {
       name, age, handleClick
     }
